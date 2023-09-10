@@ -19,10 +19,14 @@ export class LoginPage {
     await expect(this._page.getByTestId("app-name")).toBeVisible();
     await expect(this._page.getByTestId("app-name")).toHaveText("Twittah!");
   }
-
+  
   async loginWith(user: User) {
     await this._page.getByTestId("login-field").fill(user.username);
     await this._page.getByTestId("password-field").fill(user.password);
     await this._page.getByTestId("login-button").click();
   }
+  
+    async shouldBeDisplayErrorMessage(message: string){
+      await expect(this._page.getByTestId("error-message")).toHaveText(message);
+    }
 }
